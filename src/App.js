@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Accordion from "./components/Accordion";
 
-function App() {
+const items = [
+  {
+    title: "Klik-E-Mart",
+    content: "Memory game built using React.js",
+    url: "https://ethantatum.github.io/Klik-E-Mart/",
+  },
+  {
+    title: "Giftastic",
+    content: "Search for content using Giphy API, jQuery",
+    url: "https://ethantatum.github.io/GifTastic/",
+  },
+  {
+    title: "Sporty McScraper",
+    content: "Web scraper of sports news with No-SQL database (MongoDB)",
+    url: "https://fast-oasis-93811.herokuapp.com/",
+  },
+];
+
+export default () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Accordion items={items}/>
     </div>
   );
-}
-
-export default App;
+};
