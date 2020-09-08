@@ -25,17 +25,30 @@ const Search = () => {
 
       setResults(data.query.search);
     };
-    if (textInput) {
-      search();
-    }
+
+    setTimeout(() => {
+      if (textInput) {
+        search();
+      }
+    }, 500);
   }, [textInput]);
 
   const renderedResults = results.map((result) => {
     return (
-      <div className="item">
+      <div key={result.pageid} className="item">
+        <div className="right floated content">
+          <a
+            className="ui button"
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            target="_blank"
+          >
+            Go!
+          </a>
+        </div>
         <div className="content">
           <div className="header">{result.title}</div>
-          {result.snippet}
+          {/* Be very careful using dangerouslySetInnerHTML - only use for 100% trusted parties */}
+          <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
         </div>
       </div>
     );
