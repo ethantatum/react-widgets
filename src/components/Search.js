@@ -30,6 +30,16 @@ const Search = () => {
     }
   }, [textInput]);
 
+  const renderedResults = results.map((result) => {
+    return (
+      <div className="item">
+        <div className="content">
+          <div className="header">{result.title}</div>
+          {result.snippet}
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div className="ui container">
@@ -43,6 +53,7 @@ const Search = () => {
           />
         </div>
       </div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };
