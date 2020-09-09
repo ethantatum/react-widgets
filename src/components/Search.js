@@ -10,6 +10,7 @@ const Search = () => {
   // [] means run at initial render,
   // nothing means run at initial render and after every rerender
   // [data] means run at initial render, and after every rerender IF data has changed since last render
+  // Only thing you can return from use effect is a function (i.e., cleanup)
 
   useEffect(() => {
     const search = async () => {
@@ -26,11 +27,15 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (textInput) {
         search();
       }
     }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [textInput]);
 
   const renderedResults = results.map((result) => {
@@ -41,6 +46,7 @@ const Search = () => {
             className="ui button"
             href={`https://en.wikipedia.org?curid=${result.pageid}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Go!
           </a>
